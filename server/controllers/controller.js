@@ -33,10 +33,8 @@ module.exports = {
     },
 
     saveIncome: (req, res) => {
-        console.log('controller', req.body);
         model.income.save(req.body)
        .then(data => {
-           console.log(data);
            res.sendStatus(201);
        })
        .catch(err => {
@@ -46,7 +44,6 @@ module.exports = {
     },
 
     getIncome: (req, res) => {
-        console.log(req);
         model.income.get()
         .then(results => {
             res.status(200).json(results);
@@ -58,10 +55,9 @@ module.exports = {
     },
 
     updateIncome: (req, res) => {
-        console.log('controller: ', req.body);
+        console.log(req.body);
         model.income.update(req.body)
         .then (data => {
-            console.log(data);
             res.sendStatus(201);
         })
         .catch(err => {
