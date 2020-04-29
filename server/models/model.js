@@ -5,6 +5,11 @@ module.exports = {
         getAll: () => {
             let q = `SELECT * FROM categories`;
             return db.queryAsync(q).spread(res => res);
+        },
+
+        add: (category) => {
+            let q = `INSERT INTO categories (name) VAlUES (?)`;
+            return db.queryAsync(q, [category]).spread(res => res);
         }
     },
 
