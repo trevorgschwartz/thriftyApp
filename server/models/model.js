@@ -18,6 +18,25 @@ module.exports = {
             let q = `INSERT INTO transactions (date, amount, description) VALUES (?, ?, ?)`;
             return db.queryAsync(q, [date, amount, description]).spread(res => res);
         }
+    },
+
+    income: {
+        save: ({income}) => {
+            let q = 'INSERT INTO income (income) VALUES (?)';
+            return db.queryAsync(q, income).spread(res => res);
+        },
+
+        get: () => {
+            let q = 'SELECT * FROM income';
+            return db.queryAsync(q).spread(res => res);
+        },
+
+        update: ({income, id}) => {
+            console.log('model income ', income);
+            console.log('model id:', id);
+            let q = `UPDATE income SET income = (?) WHERE id=${id}`;
+            return db.queryAsync(q, income).spread(res => res);
+        }
     }
 
    
