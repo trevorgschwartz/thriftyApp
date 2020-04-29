@@ -55,9 +55,9 @@ module.exports = {
     },
 
     updateIncome: (req, res) => {
+
         model.income.update(req.body)
         .then (data => {
-            console.log(data);
             res.sendStatus(201);
         })
         .catch(err => {

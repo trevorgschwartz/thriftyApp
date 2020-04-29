@@ -9,7 +9,6 @@ class App extends React.Component {
         this.state = {
             transactions: [],
             categories: [],
-            
             income: 0,
             incomeSubmit: '',
             transactionByCategory: []
@@ -17,14 +16,14 @@ class App extends React.Component {
         };
         this.handleIncomeChange = this.handleIncomeChange.bind(this);
         this.handleIncomeSubmit = this.handleIncomeSubmit.bind(this);
-
-        
+  
     }
   
   componentDidMount() {
       this.getAllCategories(() => {
         this.getTransactionByCategory()
       })
+      this.getIncome(); 
     }
   
 
@@ -46,7 +45,12 @@ class App extends React.Component {
     }
     handleIncomeSubmit(e) {
         e.preventDefault();
-        this.saveIncome(this.state.incomeSubmit);
+        if (this.state.income === 0) {
+          this.saveIncome(this.state.incomeSubmit);
+        } else {
+          let id = this.state.income[0].id;
+          this.updateIncome(this.state.incomeSubmit, id);
+        }
         this.setState({
             incomeSubmit: ''
         })
@@ -57,12 +61,26 @@ class App extends React.Component {
         };
         axios.post('api/income', newIncome)
         .then(() => {
-            console.log('sending income: ', income)
             this.getIncome();
         })
         .catch(err => {
             console.log(err);
         })
+    }
+
+    updateIncome(income, id) {
+      console.log('updating income...')
+      let newIncome = {
+        income: income,
+        id: id
+      };
+      axios.post('api/incomeupdate', newIncome)
+      .then(() => {
+        this.getIncome();
+      })
+      .catch(err => {
+        console.log(err);
+      })
     }
 
     
