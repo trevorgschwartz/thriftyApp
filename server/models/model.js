@@ -32,8 +32,6 @@ module.exports = {
         },
 
         update: ({income, id}) => {
-            console.log('model income ', income);
-            console.log('model id:', id);
             let q = `UPDATE income SET income = (?) WHERE id=${id}`;
             return db.queryAsync(q, income).spread(res => res);
         }

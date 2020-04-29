@@ -33,4 +33,6 @@ class BudgetForm extends React.Component {
     }
 }
 
+export default BudgetForm;
+
 
