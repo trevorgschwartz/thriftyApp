@@ -16,7 +16,7 @@ module.exports = {
 
         saveTransaction: ({date, amount, description}) => {
             let q = `INSERT INTO transactions (date, amount, description) VALUES (?, ?, ?)`;
-            return db.queryAsync(q, [date, amount, description])
+            return db.queryAsync(q, [date, amount, description]).spread(res => res);
         }
     }
 
