@@ -30,5 +30,45 @@ module.exports = {
             console.log('error getting transactions by category', err);
             res.sendStatus(500);
         });
+    },
+
+    saveIncome: (req, res) => {
+        console.log('controller', req.body);
+        model.income.save(req.body)
+       .then(data => {
+           console.log(data);
+           res.sendStatus(201);
+       })
+       .catch(err => {
+           console.log('error saving income', err);
+           res.sendStatus(500);
+       })
+    },
+
+    getIncome: (req, res) => {
+        console.log(req);
+        model.income.get()
+        .then(results => {
+            res.status(200).json(results);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
+    },
+
+    updateIncome: (req, res) => {
+        console.log('controller: ', req.body);
+        model.income.update(req.body)
+        .then (data => {
+            console.log(data);
+            res.sendStatus(201);
+        })
+        .catch(err => {
+            console.log('error updating income', err);
+            res.sendStatus(500);
+        })
     }
+
+
 };
