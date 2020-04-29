@@ -8,5 +8,6 @@ router.post('/getByCategory', controller.getTransactionByCategory);
 router.post('/income', controller.saveIncome);
 router.get('/income', controller.getIncome);
 router.post('/incomeupdate', controller.updateIncome);
+router.post('/addCategory', controller.addCategory)
 
 module.exports = router;

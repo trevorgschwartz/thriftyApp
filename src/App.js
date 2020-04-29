@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import Axios from "axios";
+import TransactionList from "./TransactionList.jsx"
 
 class App extends React.Component {
     constructor(props) {
@@ -38,7 +39,6 @@ class App extends React.Component {
         })
     }
     handleIncomeChange(event) {
-        console.log('event: ', event);
         let incomeSubmit = {};
         incomeSubmit.incomeSubmit = event.target.value;
         this.setState(incomeSubmit);
@@ -138,6 +138,7 @@ class App extends React.Component {
     })
   }
 
+    
 
     render() {
         return (
@@ -152,6 +153,15 @@ class App extends React.Component {
                     <input type="submit" value="submit" />
                 </div>
                 </form>
+                <div>
+                  {this.state.transactionByCategory.map((transactionCategory, i) => {
+                    if (transactionCategory.length > 0) {
+                      return <TransactionList key={i} transactionCategory={transactionCategory} i={i} categories={this.state.categories}/> 
+                    } 
+                  })}
+                  
+
+                </div>
             </div>
         );
     }

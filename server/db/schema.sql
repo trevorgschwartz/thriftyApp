@@ -32,6 +32,7 @@ CREATE TABLE income (
   PRIMARY KEY (ID)
 );
 
+
 INSERT INTO categories (name) VAlUES ('Housing');
 INSERT INTO categories (name) VAlUES ('Utilities');
 INSERT INTO categories (name) VALUES ('Groceries');
@@ -46,3 +47,24 @@ INSERT INTO categories (name) VALUES ('Savings');
 
 -- 'insert into transactions (date, amount, description, category_id) values ("2017-08-14", 29.85, 'movies', 5)'
 -- 'insert into transactions (date, amount, description, category_id) values ("2017-08-13", 5.98, 'groceries', 3)'
+=======
+INSERT INTO categories (name) VAlUES ("Housing");
+INSERT INTO categories (name) VAlUES ("Utilities");
+INSERT INTO categories (name) VALUES ("Groceries");
+INSERT INTO categories (name) VALUES ("Dining");
+INSERT INTO categories (name) VALUES ("Entertainment");
+INSERT INTO categories (name) VAlUES ("Transportation");
+INSERT INTO categories (name) VALUES ("Staples");
+INSERT INTO categories (name) VALUES ("Miscellaneous");
+INSERT INTO categories (name) VAlUES ("Debt");
+INSERT INTO categories (name) VALUES ("Savings");
+INSERT INTO categories (name) VALUES ("test");
+
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-14", 29.85, 'movies', 5);
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-13", 5.98, 'groceries', 3);
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-13", 5.98, 'saved $200', 10);
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-13", 5.98, 'went to bar', 5);
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-13", 5.98, 'rent', 1);
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-13", 5.98, 'electricity', 2);
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-13", 5.98, 'payed old bill', 9);
+-- insert into transactions (date, amount, description, category_id) values ("2017-08-13", 10000000.98, 'vacation', 11);

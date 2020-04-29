@@ -55,7 +55,7 @@ module.exports = {
     },
 
     updateIncome: (req, res) => {
-        console.log(req.body);
+
         model.income.update(req.body)
         .then (data => {
             res.sendStatus(201);
@@ -63,6 +63,18 @@ module.exports = {
         .catch(err => {
             console.log('error updating income', err);
             res.sendStatus(500);
+        })
+    },
+
+    addCategory: (req, res) => {
+        model.categories.add(req.body.category)
+        .then (() => {
+            console.log('added category')
+            res.sendStatus(201)
+        })
+        .catch(err => {
+            console.log('error adding category', err);
+            res.sendStatus(500)
         })
     }
 
