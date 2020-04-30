@@ -5,8 +5,7 @@ module.exports = {
         let t = req.body
         model.transactions.saveTransaction(req.body)
         .then(data => {
-            console.log('transaction saved')
-            console.log(data)
+            res.sendStatus(201)
         })
         .catch(err => {
             console.log('error saving transaction', err)
@@ -71,7 +70,7 @@ module.exports = {
         model.categories.add(req.body.category)
         .then (() => {
             console.log('added category')
-            res.sendStatus(201)
+            res.send()
         })
         .catch(err => {
             console.log('error adding category', err);
