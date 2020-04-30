@@ -3,7 +3,12 @@ import axios from 'axios';
 import Axios from "axios";
 import TransactionList from "./TransactionList.jsx";
 import BudgetForm from './BudgetForm.jsx';
+
+import AddCategory from './AddCategory'
+import Piechart from './Piechart'
+
 import AddCategory from './AddCategory';
+
 
 
 class App extends React.Component {
@@ -14,21 +19,32 @@ class App extends React.Component {
             categories: [],
             income: 0,
             incomeSubmit: '',
-            transactionByCategory: []
+            transactionByCategory: [],
+            categoryTotals: {
+
+            }
 
         };
         this.handleIncomeChange = this.handleIncomeChange.bind(this);
         this.handleIncomeSubmit = this.handleIncomeSubmit.bind(this);
         this.saveTransaction = this.saveTransaction.bind(this);
+<<<<<<< HEAD
         this.addCategory = this.addCategory.bind(this);
         this.getAllCategories = this.getAllCategories.bind(this);
+=======
+
+        this.addCategory = this.addCategory.bind(this);
+
+>>>>>>> d2380f79c62014c6d2387769c582baeca8e8a17b
         
-  
+
     }
   
   componentDidMount() {
       this.getAllCategories()
+     
       this.getIncome(); 
+      
     }
   
 
@@ -36,7 +52,7 @@ class App extends React.Component {
         axios.get('api/income')
         .then(res => {
             const income = res.data;
-            console.log(income);
+            
             this.setState({income: income});
         })
         .catch(err => {
@@ -91,18 +107,16 @@ class App extends React.Component {
     
 
     getAllCategories() {
-      console.log('getting categories running')
+      
       Axios.get('/api/getCategories')
       .then(results => {
-        // console.log('results', results)
+        
         let array = results.data;
         array.sort((a, b) => {
           return a.id - b.id;
         })
         this.setState({
           categories: array
-        }, () => {
-          console.log('category state', this.state.categories)
         })
       })
       .then(()=> {
@@ -115,11 +129,13 @@ class App extends React.Component {
 
     getTransactionByCategory() {
       let transactionArray = [];
-      console.log('category in gettransactionbycategory', this.state.categories)
       this.state.categories.map(category => {
         
         Axios.post('/api/getByCategory', category)
         .then((result) => {
+          result.data.map(transaction => {
+            transaction.categoryName = category.name
+          })
           transactionArray.push(result.data)
         })
         .then(() => {
@@ -127,11 +143,13 @@ class App extends React.Component {
             transactionByCategory: transactionArray
           })
         })
+        .then(() => {
+          this.categoryTotals()
+        })
         .catch(err => {
           console.log('error getting TransactionByCategory client', err)
         })
     })
-    console.log('transaction Array', transactionArray)
   }
 
   saveTransaction(newTransaction) {
@@ -144,10 +162,9 @@ class App extends React.Component {
       console.log('error saving transaction client', err)
     })
   }
-
   addCategory(newCategory) {
     Axios.post('/api/addCategory', newCategory)
-    .then((result) => {
+    .then((data)=> {
       this.getAllCategories()
       })
     .catch(err => {
@@ -155,12 +172,52 @@ class App extends React.Component {
     })
   }
 
+  categoryTotals() {
+    let totalCatTotal = [];
+    console.log('transactionByCategory', this.state.transactionByCategory)
+    this.state.transactionByCategory.map(category => {
+    
+      let individualCatTotal = {}
+      let total = 0;
+      category.map(individualCategory => {
+        total += individualCategory.amount;
+        
+      })
+      console.log('total', total)
+      individualCatTotal.quantity = total;
+      individualCatTotal.label = category[0].categoryName;
+      totalCatTotal.push(individualCatTotal)
+    })
+    let obj = {}
+    obj.totals = totalCatTotal
+    obj.width = 500;
+    obj.height = 500;
+    this.setState({
+      categoryTotals: obj
+    })
+    let data = obj;
+    this.setState({
+      data: data
+    })
+  }
+
+
     render() {
         return (
+            
+            
             <div className="section">
+
+                <div>
+                <Piechart />
+
+                </div>
+               
+
               <div class="columns is-spaced">
               <div className="column is-one-third">
               <div className="container is-spaced">
+
                 <form onSubmit={this.handleIncomeSubmit}>
                     <h2>What is your Monthly Net Income?</h2>
                     <div class="field has-addons">
@@ -196,4 +253,3 @@ class App extends React.Component {
 
 export default App;
 
-// value={this.state.income} onChange={this.handleIncomeChange} 
