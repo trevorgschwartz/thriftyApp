@@ -1,4 +1,5 @@
 import React from 'react';
+import e from 'express';
 
 class BudgetForm extends React.Component {
     constructor(props) {
@@ -23,7 +24,8 @@ class BudgetForm extends React.Component {
         this.setState({selected: event.target.value});
     }
 
-    handleExpenseSubmit() {
+    handleExpenseSubmit(event) {
+        event.preventDefault();
        let input = {};
        input.category_id = this.state.selected;
        input.date = this.state.date;
@@ -36,16 +38,18 @@ class BudgetForm extends React.Component {
         return(
             <div className="budget-form">
                 <h3>New Expense</h3>
+                <form onSubmit={this.handleExpenseSubmit}>
                 <select onChange={this.handleChange}>
                     <option>Select Category</option>
                     {this.props.categories.map((category, i) => {
+                        return (
                         <option key={i} value={category.id}>{category.name}</option>
+                        )
                     })}
                 </select>
-                <form onSubmit={this.handleExpenseSubmit}>
-                    <input type="text" placeholder="Amount" value={this.state.amount} onChange={this.handleExpenseChange} />
-                    <input type="text" placeholder="Description" value={this.state.description} onChange={this.handleExpenseChange} />
-                    <input type="text" placeholder="Date" value={this.state.date} onChange={this.handleExpenseChange} />
+                    <input type="text" name="amount" placeholder="Amount" value={this.state.amount} onChange={this.handleExpenseChange} />
+                    <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleExpenseChange} />
+                    <input type="text" name="date" placeholder="Date" value={this.state.date} onChange={this.handleExpenseChange} />
                     <input type="submit" value="submit" />
                 </form>
             </div>
