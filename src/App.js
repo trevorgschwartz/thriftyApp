@@ -3,11 +3,9 @@ import axios from 'axios';
 import Axios from "axios";
 import TransactionList from "./TransactionList.jsx";
 import BudgetForm from './BudgetForm.jsx';
-
 import AddCategory from './AddCategory'
-import Piechart from './Piechart'
+import Piechart from './Piechart';
 
-import AddCategory from './AddCategory';
 
 
 
@@ -31,9 +29,15 @@ class App extends React.Component {
 
         this.addCategory = this.addCategory.bind(this);
         this.getAllCategories = this.getAllCategories.bind(this);
+        this.addCategory = this.addCategory.bind(this);
 
 
         this.addCategory = this.addCategory.bind(this);
+        this.getAllCategories = this.getAllCategories.bind(this);
+
+
+        this.addCategory = this.addCategory.bind(this);
+
 
 
         
@@ -41,8 +45,7 @@ class App extends React.Component {
     }
   
   componentDidMount() {
-      this.getAllCategories()
-     
+      this.getAllCategories();
       this.getIncome(); 
       
     }
@@ -210,22 +213,18 @@ class App extends React.Component {
 
                 <div>
                 <Piechart />
-
                 </div>
-               
-
               <div class="columns is-spaced">
               <div className="column is-one-third">
               <div className="container is-spaced">
 
                 <form onSubmit={this.handleIncomeSubmit}>
                     <h2>What is your Monthly Net Income?</h2>
-                    <div class="field has-addons">
-                      {/* <div class='control'> */}
-                        <input className="input is-small is-rounded is-spaced" type="text" placeholder="Input Income" value={this.state.incomeSubmit} onChange={this.handleIncomeChange} />
+                    <div class="field has-addons input-margin">
+                        <input className="input is-small is-rounded is-spaced input-margin" type="text" placeholder="Input Income" value={this.state.incomeSubmit} onChange={this.handleIncomeChange} />
                       {/* </div> */}
                       {/* <div class="control"> */}
-                      <input className="submit" type="submit" value="submit" />
+                      <input className="button is-info is-small" type="submit" value="Submit" />
                       {/* </div> */}
                     </div>
                 </form>
