@@ -1,7 +1,8 @@
 import React from "react";
 import axios from 'axios';
 import Axios from "axios";
-import TransactionList from "./TransactionList.jsx"
+import TransactionList from "./TransactionList.jsx";
+import BudgetForm from './BudgetForm.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class App extends React.Component {
         };
         this.handleIncomeChange = this.handleIncomeChange.bind(this);
         this.handleIncomeSubmit = this.handleIncomeSubmit.bind(this);
+        this.saveTransaction = this.saveTransaction.bind(this);
   
     }
   
@@ -45,7 +47,7 @@ class App extends React.Component {
   }
   handleIncomeSubmit(e) {
       e.preventDefault();
-      if (this.state.income === 0) {
+      if (this.state.income.length ===  0) {
         this.saveIncome(this.state.incomeSubmit);
       } else {
         let id = this.state.income[0].id;
@@ -155,6 +157,9 @@ class App extends React.Component {
                     <input type="submit" value="submit" />
                 </div>
                 </form>
+                <div>
+                  <BudgetForm saveTransaction={this.saveTransaction} categories={this.state.categories}/>
+                </div>
                 <div className="column is-mobile">
                   {this.state.transactionByCategory.map((transactionCategory, i) => {
                     if (transactionCategory.length > 0) {
