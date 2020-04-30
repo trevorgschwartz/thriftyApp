@@ -39,49 +39,49 @@ class App extends React.Component {
         })
     }
     handleIncomeChange(event) {
-        let incomeSubmit = {};
-        incomeSubmit.incomeSubmit = event.target.value;
-        this.setState(incomeSubmit);
-    }
-    handleIncomeSubmit(e) {
-        e.preventDefault();
-        if (this.state.income === 0) {
-          this.saveIncome(this.state.incomeSubmit);
-        } else {
-          let id = this.state.income[0].id;
-          this.updateIncome(this.state.incomeSubmit, id);
-        }
-        this.setState({
-            incomeSubmit: ''
-        })
-    }
-    saveIncome(income) {
-        let newIncome = {
-            income: income
-        };
-        axios.post('api/income', newIncome)
-        .then(() => {
-            this.getIncome();
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-
-    updateIncome(income, id) {
-      console.log('updating income...')
+      let incomeSubmit = {};
+      incomeSubmit.incomeSubmit = event.target.value;
+      this.setState(incomeSubmit);
+  }
+  handleIncomeSubmit(e) {
+      e.preventDefault();
+      if (this.state.income === 0) {
+        this.saveIncome(this.state.incomeSubmit);
+      } else {
+        let id = this.state.income[0].id;
+        this.updateIncome(this.state.incomeSubmit, id);
+      }
+      this.setState({
+          incomeSubmit: ''
+      })
+  }
+  
+  saveIncome(income) {
       let newIncome = {
-        income: income,
-        id: id
+          income: income
       };
-      axios.post('api/incomeupdate', newIncome)
+      axios.post('api/income', newIncome)
       .then(() => {
-        this.getIncome();
+          this.getIncome();
       })
       .catch(err => {
-        console.log(err);
+          console.log(err);
       })
-    }
+  }
+
+  updateIncome(income, id) {
+    let newIncome = {
+      income: income,
+      id: id
+    };
+    axios.post('api/incomeupdate', newIncome)
+    .then(() => {
+      this.getIncome();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
     
 
