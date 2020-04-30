@@ -28,11 +28,15 @@ class AddCategory extends React.Component {
 
     render() {
         return (
-            <div className="budget-form">
-                <h3>Add New Category</h3>
+            <div className="container">
                 <form onSubmit={this.handleCategorySubmit}>
-                    <input type="text"  placeholder="Category" value={this.state.category} onChange={this.handleCategoryChange} />
-                    <input type="submit" value="submit" />
+                <h2>Add New Category</h2>
+                <div className="field is-spaced">
+                    <input className="input is-small is-rounded is-spaced" type="text"  placeholder="Category" value={this.state.category} onChange={this.handleCategoryChange} />
+                </div>
+                <div className="field is-spaced">   
+                    <button className="button is-info is-small is-spaced" type="submit" value="submit">Submit</button>
+                </div>
                 </form>
             </div>
         )

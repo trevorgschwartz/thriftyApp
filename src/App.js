@@ -3,8 +3,12 @@ import axios from 'axios';
 import Axios from "axios";
 import TransactionList from "./TransactionList.jsx";
 import BudgetForm from './BudgetForm.jsx';
+
 import AddCategory from './AddCategory'
 import Piechart from './Piechart'
+
+import AddCategory from './AddCategory';
+
 
 
 class App extends React.Component {
@@ -24,7 +28,11 @@ class App extends React.Component {
         this.handleIncomeChange = this.handleIncomeChange.bind(this);
         this.handleIncomeSubmit = this.handleIncomeSubmit.bind(this);
         this.saveTransaction = this.saveTransaction.bind(this);
+
         this.addCategory = this.addCategory.bind(this);
+
+        
+
     }
   
   componentDidMount() {
@@ -194,35 +202,44 @@ class App extends React.Component {
             
             
             <div className="section">
+
                 <div>
                 <Piechart />
 
                 </div>
-                <h1 className="title container">Thrifty App</h1>
-                <h2 className="subtitle container">Tame your spending</h2>
+               
+
+              <div class="columns is-spaced">
+              <div className="column is-one-third">
+              <div className="container is-spaced">
+
                 <form onSubmit={this.handleIncomeSubmit}>
-                <div>
-                    What is your Monthly Net Income?
-                    <input type="text" placeholder="Input Income" value={this.state.incomeSubmit} onChange={this.handleIncomeChange} />
-                </div>
-                <div>
-                    <input type="submit" value="submit" />
-                </div>
+                    <h2>What is your Monthly Net Income?</h2>
+                    <div class="field has-addons">
+                      {/* <div class='control'> */}
+                        <input className="input is-small is-rounded is-spaced" type="text" placeholder="Input Income" value={this.state.incomeSubmit} onChange={this.handleIncomeChange} />
+                      {/* </div> */}
+                      {/* <div class="control"> */}
+                        <button className="button is-info is-small is-spaced" type="submit" value="submit">Submit</button>
+                      {/* </div> */}
+                    </div>
                 </form>
-                <div>
+                </div>
+                <div className="container is-spaced padding-top">
                   <BudgetForm saveTransaction={this.saveTransaction} categories={this.state.categories}/>
                 </div>
+                <div className="container is-spaced"></div>
                 <div>
                   <AddCategory addCategory={this.addCategory}/>
                 </div>
-                <div className="column is-mobile">
+                </div>
+                <div className="column is-two-thids is-mobile">
                   {this.state.transactionByCategory.map((transactionCategory, i) => {
                     if (transactionCategory.length > 0) {
                       return <TransactionList key={i} transactionCategory={transactionCategory} i={i} categories={this.state.categories}/> 
                     } 
                   })}
-                  
-
+                </div>
                 </div>
             </div>
         );
