@@ -142,8 +142,10 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="app">
-                <header><h1 className="main">Thrifty</h1></header>
+            <div className="section">
+                
+                <h1 className="title container">Thrifty App</h1>
+                <h2 className="subtitle container">Tame your spending</h2>
                 <form onSubmit={this.handleIncomeSubmit}>
                 <div>
                     What is your Monthly Net Income?
@@ -153,7 +155,7 @@ class App extends React.Component {
                     <input type="submit" value="submit" />
                 </div>
                 </form>
-                <div>
+                <div className="column is-mobile">
                   {this.state.transactionByCategory.map((transactionCategory, i) => {
                     if (transactionCategory.length > 0) {
                       return <TransactionList key={i} transactionCategory={transactionCategory} i={i} categories={this.state.categories}/> 
