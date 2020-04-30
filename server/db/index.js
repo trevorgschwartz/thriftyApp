@@ -4,7 +4,7 @@ const Promise = require("bluebird");
 const database = "budget";
 const dbInfo = {
     user: 'root',
-    password: 'pawscat',
+    password: 'password',
     database: 'budget'
 }
 
