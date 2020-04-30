@@ -43,9 +43,11 @@ class BudgetForm extends React.Component {
     
     render () {
         return(
-            <div className="budget-form">
-                <h3>New Expense</h3>
+            <div className="container is-spaced">
                 <form onSubmit={this.handleExpenseSubmit}>
+                <h2 className="is-spaced">New Expense</h2>
+                <div className="field is-spaced">
+                <div className="select is-small is-spaced">
                 <select onChange={this.handleChange}>
                     <option>Select Category</option>
                     {this.props.categories.map((category, i) => {
@@ -54,10 +56,20 @@ class BudgetForm extends React.Component {
                         )
                     })}
                 </select>
-                    <input type="text" name="amount" placeholder="Amount" value={this.state.amount} onChange={this.handleExpenseChange} />
-                    <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleExpenseChange} />
-                    <input type="text" name="date" placeholder="Date" value={this.state.date} onChange={this.handleExpenseChange} />
-                    <input type="submit" value="submit" />
+                </div>
+                </div>
+                <div className="field is-spaced">
+                    <input className="input is-small is-rounded is-spaced" type="text" name="amount" placeholder="Amount" value={this.state.amount} onChange={this.handleExpenseChange} />
+                </div>
+                <div className="field is-spaced">
+                    <input className="input is-small is-rounded is-spaced" type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleExpenseChange} />
+                </div>
+                <div className="field is-spaced">
+                    <input className="input is-small is-rounded is-spaced" type="text" name="date" placeholder="Date" value={this.state.date} onChange={this.handleExpenseChange} />
+                </div>  
+                <div className="field is-spaced">
+                    <button className="button is-info is-small is-spaced" type="submit" value="submit">Submit</button>
+                </div> 
                 </form>
             </div>
         )
