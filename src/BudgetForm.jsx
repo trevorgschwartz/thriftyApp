@@ -1,5 +1,5 @@
 import React from 'react';
-import e from 'express';
+
 
 class BudgetForm extends React.Component {
     constructor(props) {
@@ -31,7 +31,14 @@ class BudgetForm extends React.Component {
        input.date = this.state.date;
        input.amount = this.state.amount;
        input.description = this.state.description;
+       console.log('input', input)
        this.props.saveTransaction(input);
+       this.setState({
+        selected: undefined,
+        amount: '',
+        description: '',
+        date: ''
+       })
     }
     
     render () {

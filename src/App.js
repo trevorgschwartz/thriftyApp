@@ -3,6 +3,7 @@ import axios from 'axios';
 import Axios from "axios";
 import TransactionList from "./TransactionList.jsx";
 import BudgetForm from './BudgetForm.jsx';
+import AddCategory from './AddCategory'
 
 class App extends React.Component {
     constructor(props) {
@@ -22,9 +23,7 @@ class App extends React.Component {
     }
   
   componentDidMount() {
-      this.getAllCategories(() => {
-        this.getTransactionByCategory()
-      })
+      this.getAllCategories()
       this.getIncome(); 
     }
   
@@ -87,7 +86,8 @@ class App extends React.Component {
 
     
 
-    getAllCategories(callback) {
+    getAllCategories() {
+      console.log('getting categories running')
       Axios.get('/api/getCategories')
       .then(results => {
         // console.log('results', results)
@@ -102,7 +102,7 @@ class App extends React.Component {
         })
       })
       .then(()=> {
-        callback()
+        this.getTransactionByCategory()
       })
       .catch(err => {
         console.log("error getting categories client", err)
@@ -130,17 +130,26 @@ class App extends React.Component {
     console.log('transaction Array', transactionArray)
   }
 
-  saveTransaction() {
-    Axios.post('/api/save', transaction)
-    .then(() => {
-      this.getTransactionByCategory()
-    })
+  saveTransaction(newTransaction) {
+    Axios.post('/api/save', newTransaction)
+    .then((data)=> {
+      this.getAllCategories()
+      })
+    
     .catch(err => {
       console.log('error saving transaction client', err)
     })
   }
 
-    
+  addCategory(newCategory) {
+    Axios.post('/api/addCategory', newCategory)
+    .then((result) => {
+      this.getAllCategories()
+      })
+    .catch(err => {
+      console.log('error adding category', err)
+    })
+  }
 
     render() {
         return (
@@ -159,6 +168,9 @@ class App extends React.Component {
                 </form>
                 <div>
                   <BudgetForm saveTransaction={this.saveTransaction} categories={this.state.categories}/>
+                </div>
+                <div>
+                  <AddCategory addCategory={this.addCategory}/>
                 </div>
                 <div className="column is-mobile">
                   {this.state.transactionByCategory.map((transactionCategory, i) => {
