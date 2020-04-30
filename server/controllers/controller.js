@@ -70,7 +70,7 @@ module.exports = {
         model.categories.add(req.body.category)
         .then (() => {
             console.log('added category')
-            res.send()
+            res.sendStatus(201)
         })
         .catch(err => {
             console.log('error adding category', err);
