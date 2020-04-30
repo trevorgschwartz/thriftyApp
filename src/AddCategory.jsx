@@ -18,8 +18,8 @@ class AddCategory extends React.Component {
         })
     }
 
-    handleCategorySubmit(e) {
-        e.preventDefault()
+    handleCategorySubmit(event) {
+        event.preventDefault()
         this.props.addCategory(this.state)
     }
 
@@ -32,7 +32,7 @@ class AddCategory extends React.Component {
                     <input className="input is-small is-rounded is-spaced" type="text"  placeholder="Category" value={this.state.category} onChange={this.handleCategoryChange} />
                 </div>
                 <div className="field is-spaced">   
-                    <button className="button is-info is-small is-spaced" type="submit" value="submit">Submit</button>
+                    <input className="submit" type="submit" value="submit" />
                 </div>
                 </form>
             </div>

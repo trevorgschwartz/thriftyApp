@@ -20,6 +20,8 @@ class App extends React.Component {
         this.handleIncomeChange = this.handleIncomeChange.bind(this);
         this.handleIncomeSubmit = this.handleIncomeSubmit.bind(this);
         this.saveTransaction = this.saveTransaction.bind(this);
+        this.addCategory = this.addCategory.bind(this);
+        this.getAllCategories = this.getAllCategories.bind(this);
         
   
     }
@@ -166,7 +168,7 @@ class App extends React.Component {
                         <input className="input is-small is-rounded is-spaced" type="text" placeholder="Input Income" value={this.state.incomeSubmit} onChange={this.handleIncomeChange} />
                       {/* </div> */}
                       {/* <div class="control"> */}
-                        <button className="button is-info is-small is-spaced" type="submit" value="submit">Submit</button>
+                      <input className="submit" type="submit" value="submit" />
                       {/* </div> */}
                     </div>
                 </form>
@@ -179,7 +181,7 @@ class App extends React.Component {
                   <AddCategory addCategory={this.addCategory}/>
                 </div>
                 </div>
-                <div className="column is-two-thids is-mobile">
+                <div className="column is-two-thirds is-mobile">
                   {this.state.transactionByCategory.map((transactionCategory, i) => {
                     if (transactionCategory.length > 0) {
                       return <TransactionList key={i} transactionCategory={transactionCategory} i={i} categories={this.state.categories}/> 
