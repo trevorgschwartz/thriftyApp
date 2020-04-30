@@ -68,7 +68,7 @@ class BudgetForm extends React.Component {
                     <input className="input is-small is-rounded is-spaced" type="text" name="date" placeholder="Date" value={this.state.date} onChange={this.handleExpenseChange} />
                 </div>  
                 <div className="field is-spaced">
-                    <input className="submit" type="submit" value="submit" />
+                    <input className="button is-info is-small" type="submit" value="Submit" /> 
                 </div> 
                 </form>
             </div>
