@@ -21,6 +21,9 @@ class AddCategory extends React.Component {
     handleCategorySubmit(e) {
         e.preventDefault()
         this.props.addCategory(this.state)
+        this.setState({
+            category: ''
+        })
     }
 
     render() {
