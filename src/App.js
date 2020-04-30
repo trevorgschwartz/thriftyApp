@@ -28,14 +28,14 @@ class App extends React.Component {
         this.handleIncomeChange = this.handleIncomeChange.bind(this);
         this.handleIncomeSubmit = this.handleIncomeSubmit.bind(this);
         this.saveTransaction = this.saveTransaction.bind(this);
-<<<<<<< HEAD
+
         this.addCategory = this.addCategory.bind(this);
         this.getAllCategories = this.getAllCategories.bind(this);
-=======
+
 
         this.addCategory = this.addCategory.bind(this);
 
->>>>>>> d2380f79c62014c6d2387769c582baeca8e8a17b
+
         
 
     }
