@@ -2,6 +2,7 @@ const model = require('../models/model.js');
 
 module.exports = {
     saveTransaction: (req, res) => {
+        let t = req.body
         model.transactions.saveTransaction(req.body)
         .then(data => {
             console.log('transaction saved')
