@@ -9,9 +9,29 @@ class BudgetForm extends React.Component {
             description: '',
             date: ''
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleExpenseChange = this.handleExpenseChange.bind(this);
+        this.handleExpenseSubmit = this.handleExpenseSubmit.bind(this);
+    }
+    handleExpenseChange(event) {
+        let expense = {};
+        expense[event.target.name] = event.target.value;
+        this.setState(expense);
     }
 
+    handleChange(event) {
+        this.setState({selected: event.target.value});
+    }
 
+    handleExpenseSubmit() {
+       let input = {};
+       input.category_id = this.state.selected;
+       input.date = this.state.date;
+       input.amount = this.state.amount;
+       input.description = this.state.description;
+       this.props.saveTransaction(input);
+    }
+    
     render () {
         return(
             <div className="budget-form">
